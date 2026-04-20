@@ -15,18 +15,14 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const app = express();
-app.use(cors({ origin: '*' })); 
-
 app.use(cors({
-  origin: (origin, callback) => {
-    const allowed = ["https://auto-repair-frontend-my1pza1vd-sanjida1-2s-projects.vercel.app", "http://localhost:3000"];
-    if (!origin || allowed.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
+  origin: [
+    "https://auto-repair-frontend-kappa.vercel.app",
+    "https://auto-repair-frontend-my1pza1vd-sanjida1-2s-projects.vercel.app"
+  ],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
