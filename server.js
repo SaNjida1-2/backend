@@ -16,7 +16,7 @@ import jwt from 'jsonwebtoken';
 
 const app = express();
 app.use(cors({
-    origin: ["https://vercel.app", "http://localhost:3000"],
+    origin: ["https://auto-repair-frontend-a9n85ze04-sanjida1-2s-projects.vercel.app", "http://localhost:3000"],
     credentials: true
 }));
 app.use(express.json());
