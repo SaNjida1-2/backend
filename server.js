@@ -15,10 +15,20 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 const app = express();
+app.use(cors({ origin: '*' })); 
+
 app.use(cors({
-    origin: ["https://auto-repair-frontend-a9n85ze04-sanjida1-2s-projects.vercel.app", "http://localhost:3000"],
-    credentials: true
+  origin: (origin, callback) => {
+    const allowed = ["https://auto-repair-frontend-my1pza1vd-sanjida1-2s-projects.vercel.app", "http://localhost:3000"];
+    if (!origin || allowed.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 
 const transporter = nodemailer.createTransport({
